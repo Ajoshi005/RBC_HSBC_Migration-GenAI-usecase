@@ -1,0 +1,12 @@
+streamlit==1.30.0
+pinecone-client==3.0.2
+langchain==0.1.5
+langchain_core
+langchain-community
+langchainhub
+langchain-openai
+chromadb
+pypdf
+tiktoken
+python-dotenv==1.0.0
+
