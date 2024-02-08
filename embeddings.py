@@ -9,6 +9,7 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_core.prompts import ChatPromptTemplate
 from langchain.globals import set_debug
 from dotenv import load_dotenv
+import streamlit as st
 
 set_debug(True)
 load_dotenv()
@@ -26,7 +27,8 @@ text_splitter = RecursiveCharacterTextSplitter(chunk_size=400, chunk_overlap=40)
 splits = text_splitter.split_documents(docs)
 # 2015 chunks of 400 tokens
 
-embed_model = OpenAIEmbeddings(openai_api_key=os.getenv('OPENAI_KEY'))
+
+embed_model = OpenAIEmbeddings(openai_api_key=os.getenv('OPENAI_KEY'))  # os.getenv('OPENAI_KEY'))
 
 
 # vectorstore = Chroma.from_documents(documents=splits, embedding=embed_model)
@@ -39,7 +41,7 @@ def create_knowledge_base(split_docs):
     # gets list of docs(chunks) as input and Returns retreiver
 
     index_name = 'rbchsbc-retrieval-augmentation'
-    PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
+    PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]  # os.getenv("PINECONE_API_KEY")
 
     # init
     pinecone = PineconeClient(api_key=PINECONE_API_KEY, environment='us-west1-gcp-free')
@@ -74,7 +76,12 @@ def query_llm(query):
     custom_rag_prompt = ChatPromptTemplate.from_template(template)
 
     index_name = 'rbchsbc-retrieval-augmentation'
-    embeddings = OpenAIEmbeddings(openai_api_key=os.getenv('OPENAI_KEY'))
+    embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["OPENAI_KEY"])
+
+    PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]  # os.getenv("PINECONE_API_KEY")
+
+    # init
+    pinecone = PineconeClient(api_key=PINECONE_API_KEY, environment='us-west1-gcp-free')
 
     docsearch = Pinecone.from_existing_index(index_name, embeddings)
     retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k": 5})
@@ -87,5 +94,3 @@ def query_llm(query):
     )
     response = rag_chain.invoke(query)
     return response
-
-

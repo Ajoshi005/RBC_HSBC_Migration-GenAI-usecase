@@ -72,10 +72,12 @@ sidebar_text = """
 
 st.sidebar.markdown(sidebar_text)
 
-# Add a link to your resume on LinkedIn in the sidebar
+# Define the URLs
 linkedin_url = "https://www.linkedin.com/in/akashjoshi/"
 github_url = "https://github.com/Ajoshi005"
+medium_url = "https://medium.com/p/cdb58657c5c3"
 
+# Add links to LinkedIn, GitHub, and Medium in the sidebar
 st.sidebar.markdown(
     f"""
     <div style="display: flex; align-items: center;">
@@ -85,6 +87,7 @@ st.sidebar.markdown(
         <a href="{github_url}" target="_blank">
             <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width=30 height=30>
         </a>
+        <a href="{medium_url}" target="_blank" style="margin-left: 12px;">Medium Blog</a>
     </div>
     """,
     unsafe_allow_html=True
