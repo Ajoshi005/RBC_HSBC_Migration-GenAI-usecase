@@ -60,8 +60,7 @@ if user_input:
     st.write("SOURCES:-")
     # Display the sources in a separate block
     for source in sources:
-        st.write("Page:", source.metadata["page"])
-        st.write("Document:", source.metadata["source"])
+        st.write("Page:", source.metadata["page"], ",", source.metadata["source"])
         st.write("Content:", source.page_content)
         st.write("")
 
