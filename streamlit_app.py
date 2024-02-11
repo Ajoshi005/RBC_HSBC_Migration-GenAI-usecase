@@ -1,6 +1,7 @@
 import streamlit as st
 from embeddings import query_llm  # Import your function from function.py
 import os
+
 # ----------Setting Langsmith params for tracing----------------------------#
 
 os.environ["LANGCHAIN_TRACING_V2"] = "true"
@@ -13,16 +14,15 @@ os.environ["LANGCHAIN_PROJECT"] = "RBC-HSBC-GENAI-USECASE"
 # Set Streamlit app title with emojis related to customer relationship management
 st.title("🧑‍💼 Customer Relationship Manager AI Assistant 🤝")
 
-
 # Define the professional color palette for Streamlit
 rbc_canada_palette = {
     "primary": "#ff4b4b",
-    "secondary": "#262730",     # A warm orange color used for accentuating elements like borders and icons.
-    "background": "#0e1117",    # A dark blue color used as the background color of the interface.
-    "text": "#fafafa",          # A soft peach color used for text to ensure better readability.
-    "accent1": "#E9C46A",       # A mustard yellow color used as an accent for highlighting specific elements.
-    "accent2": "#F4A261",       # A shade of orange used for additional accents or to add visual variety.
-    "accent3": "#2A9D8F"        # A slightly lighter shade of teal-green used for highlighting specific elements or actions.
+    "secondary": "#262730",  # A warm orange color used for accentuating elements like borders and icons.
+    "background": "#0e1117",  # A dark blue color used as the background color of the interface.
+    "text": "#fafafa",  # A soft peach color used for text to ensure better readability.
+    "accent1": "#E9C46A",  # A mustard yellow color used as an accent for highlighting specific elements.
+    "accent2": "#F4A261",  # A shade of orange used for additional accents or to add visual variety.
+    "accent3": "#2A9D8F"  # A slightly lighter shade of teal-green used for highlighting specific elements or actions.
 }
 
 # Set page background color and text color using RBC Bank Canada color palette
@@ -57,26 +57,22 @@ if user_input:
         """,
         unsafe_allow_html=True,
     )
-
     # Display the sources in a separate block
-    if sources:
-        for source in sources:
-            st.write(source['page_content'])  # Print the source
-            st.write(source['metadata']['page'])
-            st.write(source['metadata']['source'])
-
+    for source in sources:
+        st.write(source['page_content'])  # Print the source
+        # st.write(source['metadata']['page'])
+        # st.write(source['metadata']['source'])
 
         # Add a heading to the sidebar
 st.sidebar.header("About the App")
 
 # Add a description to the sidebar
 st.sidebar.write(
-   "The App responds to your questions on HSBC RBC Transition based on the RBC Product Migration Guide"
+    "The App responds to your questions on HSBC RBC Transition based on the RBC Product Migration Guide"
 )
 RBC_doc_url = "https://www.rbc.com/hsbc-canada/product-service-guide.html?#personal"
 st.sidebar.markdown(
     f'<a href="{RBC_doc_url}">RBC Product Migration Guide</a>', unsafe_allow_html=True)
-
 
 sidebar_text = """
 ### Tech stack:
