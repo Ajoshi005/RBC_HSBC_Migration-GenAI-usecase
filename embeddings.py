@@ -32,7 +32,6 @@ embed_model = OpenAIEmbeddings(openai_api_key=os.getenv('OPENAI_KEY'))  # os.get
 
 
 # vectorstore = Chroma.from_documents(documents=splits, embedding=embed_model)
-
 # --------------PINECONE DB Implementation------------------
 
 # Already Run below statement once
