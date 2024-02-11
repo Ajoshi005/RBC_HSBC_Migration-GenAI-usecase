@@ -92,5 +92,5 @@ def query_llm(query):
             | StrOutputParser()
     )
     response = rag_chain.invoke(query)
-    sources = retriever.get_relevant_documents("what did he say about ketanji brown jackson")
+    sources = retriever.get_relevant_documents(query)
     return response, sources

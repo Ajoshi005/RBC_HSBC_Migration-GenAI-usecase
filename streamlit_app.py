@@ -57,10 +57,12 @@ if user_input:
         """,
         unsafe_allow_html=True,
     )
+    st.write("SOURCES:-")
     # Display the sources in a separate block
     for source in sources:
         st.write(source.metadata["page"])
         st.write(source.metadata["source"])
+        st.write(source.page_content)
         st.write("")
         st.write("")
         # st.write(source['page_content'])  # Print the source
