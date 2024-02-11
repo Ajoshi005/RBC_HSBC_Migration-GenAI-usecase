@@ -67,12 +67,13 @@ if user_input:
                     Sources:
                 </p>
                 <ul style='margin-top: 5px; color: {rbc_canada_palette["text"]}; font-size: 12px;'>
-                    {''.join([f"<li>{source}</li>" for source in sources])}
+                    {''.join([f"<li>{source['page_content']} - Page: {source['metadata']['page']} - Source: {source['metadata']['source']}</li>" for source in sources])}
                 </ul>
             </div>
             """,
             unsafe_allow_html=True,
         )
+
 
 
 # Add a heading to the sidebar
