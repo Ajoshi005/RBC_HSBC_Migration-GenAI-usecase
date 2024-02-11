@@ -60,30 +60,13 @@ if user_input:
 
     # Display the sources in a separate block
     if sources:
-        source_list = []
         for source in sources:
-            if 'page_content' in source and 'metadata' in source and 'page' in source['metadata'] and 'source' in source['metadata']:
-                source_list.append(f"<li>{source['page_content']} - Page: {source['metadata']['page']} - Source: {source['metadata']['source']}</li>")
-            # else:
-            #     st.warning("Invalid source structure.")
-            #     st.write(source)  # Print the problematic source for inspection
-        if source_list:
-            st.markdown(
-                f"""
-                <div style='background-color: {rbc_canada_palette["secondary"]}; padding: 10px;'>
-                    <p style='color: {rbc_canada_palette["text"]}; font-size: 12px;'>
-                        Sources:
-                    </p>
-                    <ul style='margin-top: 5px; color: {rbc_canada_palette["text"]}; font-size: 12px;'>
-                        {''.join(source_list)}
-                    </ul>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
+            st.write(source['content'])  # Print the source
+            st.write(source['metadata']['page'])
+            st.write(source['metadata']['source'])
 
 
-# Add a heading to the sidebar
+        # Add a heading to the sidebar
 st.sidebar.header("About the App")
 
 # Add a description to the sidebar
