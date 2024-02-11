@@ -53,7 +53,7 @@ if user_input:
             <p style='color: {rbc_canada_palette["accent1"]}; font-size: 16px;'>
                 {model_output}
             </p>
-            <p style='color: {rbc_canada_palette["accent2"]}; font-size: 12px;'>
+            <p style='color: {rbc_canada_palette["text"]}; font-size: 12px;'>
                 Sources:
                 <ul style='margin-top: 5px;'>
                     {''.join([f"<li>{source}</li>" for source in sources])}
