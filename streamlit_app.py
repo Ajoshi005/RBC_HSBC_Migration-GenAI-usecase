@@ -60,6 +60,7 @@ if user_input:
     # Display the sources in a separate block
     for source in sources:
         st.write(source.metadata["page"])
+        st.write(source.metadata["source"])
         st.write("")
         st.write("")
         # st.write(source['page_content'])  # Print the source
