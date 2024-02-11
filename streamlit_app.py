@@ -61,7 +61,8 @@ if user_input:
     # Display the sources in a separate block
     for source in sources:
         st.write("Page:", source.metadata["page"], ",", source.metadata["source"])
-        st.write(f"<span style='font-size: 10px; color: #264653;'>Content: {source.page_content}</span>")
+        st.write(f"<span style='font-size: 10px; color: #264653;'>Content: {source.page_content}</span>"
+                 , unsafe_allow_html=True)
         st.write("")
 
         # Add a heading to the sidebar
