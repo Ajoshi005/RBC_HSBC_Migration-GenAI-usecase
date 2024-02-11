@@ -83,7 +83,7 @@ def query_llm(query):
     pinecone = PineconeClient(api_key=PINECONE_API_KEY, environment='us-west1-gcp-free')
 
     docsearch = Pinecone.from_existing_index(index_name, embeddings)
-    retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k": 5})
+    retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k": 3})
 
     rag_chain = (
             {"context": retriever, "question": RunnablePassthrough()}
@@ -92,4 +92,5 @@ def query_llm(query):
             | StrOutputParser()
     )
     response = rag_chain.invoke(query)
-    return response
+    sources = retriever.get_relevant_documents("what did he say about ketanji brown jackson")
+    return response, sources

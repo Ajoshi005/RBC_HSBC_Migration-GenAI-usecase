@@ -44,7 +44,7 @@ user_input = st.text_area("Please enter your query on transition of your HSBC ac
 # Check if the user has entered any input
 if user_input:
     # Process user input and get the model's output
-    model_output = query_llm(user_input)
+    model_output, sources = query_llm(user_input)
 
     # Display the output in formatted text format
     st.markdown(
@@ -52,6 +52,12 @@ if user_input:
         <div style='background-color: {rbc_canada_palette["secondary"]}; padding: 10px;'>
             <p style='color: {rbc_canada_palette["accent1"]}; font-size: 16px;'>
                 {model_output}
+            </p>
+            <p style='color: {rbc_canada_palette["text"]}; font-size: 14px;'>
+                Sources:
+                <ul style='margin-top: 5px;'>
+                    {''.join([f"<li>{source}</li>" for source in sources])}
+                </ul>
             </p>
         </div>
         """,
