@@ -37,9 +37,35 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+# Section to get product type of the query
+# Define the options for the dropdown list
+product_options = [
+    "Personal Chequing and Savings Accounts",
+    "Mortgage, Creditor Insurance for Mortgage, Creditor Insurance for Line of Credit",
+    "Personal Loans, Lines of Credit and Personal Overdraft ",
+    "Investments",
+    "Gauranteed Investment Cerificates and Term Deposits",
+    "Credit Card",
+    "Loyalty"
+]
 
-# Get user input from text area
-user_input = st.text_area("Please enter your query on transition of your HSBC accounts to RBC:")
+# Create the dropdown list
+selected_product = st.selectbox("Select Product", product_options)
+# Add a submit button
+submitted = st.button("Submit")
+# Execute function when the submit button is clicked
+if submitted:
+    # Call your function here
+    print("Selected Product:", selected_product)
+
+# Get user input from text area based on product selected (prompt selection)
+if selected_product:
+    user_input = st.text_area(f"Please enter your query on transition of your HSBC personal Banking "
+                              f"product {selected_product} to RBC:")
+    user_input = ("Answer the following question from source product-service-guide-personal-en.pdf regarding personal "
+                  f"product {selected_product} to RBC: {user_input}")
+else:
+    user_input = st.text_area(f"Please enter your query on transition of your HSBC personal Banking accounts to RBC:")
 
 # Check if the user has entered any input
 if user_input:
