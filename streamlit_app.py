@@ -66,19 +66,21 @@ if user_input:
                 source_list.append(f"<li>{source['page_content']} - Page: {source['metadata']['page']} - Source: {source['metadata']['source']}</li>")
             else:
                 st.warning("Invalid source structure.")
-        st.markdown(
-            f"""
-            <div style='background-color: {rbc_canada_palette["secondary"]}; padding: 10px;'>
-                <p style='color: {rbc_canada_palette["text"]}; font-size: 12px;'>
-                    Sources:
-                </p>
-                <ul style='margin-top: 5px; color: {rbc_canada_palette["text"]}; font-size: 12px;'>
-                    {''.join(source_list)}
-                </ul>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+                st.write(source)  # Print the problematic source for inspection
+        if source_list:
+            st.markdown(
+                f"""
+                <div style='background-color: {rbc_canada_palette["secondary"]}; padding: 10px;'>
+                    <p style='color: {rbc_canada_palette["text"]}; font-size: 12px;'>
+                        Sources:
+                    </p>
+                    <ul style='margin-top: 5px; color: {rbc_canada_palette["text"]}; font-size: 12px;'>
+                        {''.join(source_list)}
+                    </ul>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
 
 
 # Add a heading to the sidebar
