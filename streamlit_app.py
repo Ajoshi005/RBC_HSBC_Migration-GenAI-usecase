@@ -43,28 +43,32 @@ user_input = st.text_area("Please enter your query on transition of your HSBC ac
 
 # Check if the user has entered any input
 if user_input:
-    # Process user input and get the model's output
+    # Process user input and get the model's output and sources
     model_output, sources = query_llm(user_input)
 
-    # Display the output in formatted text format
-    if user_input:
-        # Process user input and get the model's output and sources
-        model_output, sources = query_llm(user_input)
+    # Display the model output in a formatted text format
+    st.markdown(
+        f"""
+        <div style='background-color: {rbc_canada_palette["secondary"]}; padding: 10px;'>
+            <p style='color: {rbc_canada_palette["accent1"]}; font-size: 16px;'>
+                {model_output}
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
-        # Display the model output in formatted text format
+    # Display the sources in a separate block
+    if sources:
         st.markdown(
-            f"""
+            """
             <div style='background-color: {rbc_canada_palette["secondary"]}; padding: 10px;'>
-                <p style='color: {rbc_canada_palette["accent1"]}; font-size: 16px;'>
-                    {model_output}
-                </p>
                 <p style='color: {rbc_canada_palette["text"]}; font-size: 12px;'>
                     Sources:
-                    <ul style='margin-top: 5px;'>
-                        {''.join([f"<li>{source['page_content']}, {source['metadata']['page']}, "
-                                  f"{source['metadata']['source']}</li>" for source in sources])}
-                    </ul>
                 </p>
+                <ul style='margin-top: 5px;'>
+                    {''.join([f"<li>{source}</li>" for source in sources])}
+                </ul>
             </div>
             """,
             unsafe_allow_html=True,
