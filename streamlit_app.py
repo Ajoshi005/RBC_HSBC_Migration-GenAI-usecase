@@ -60,6 +60,12 @@ if user_input:
 
     # Display the sources in a separate block
     if sources:
+        source_list = []
+        for source in sources:
+            if 'page_content' in source and 'metadata' in source and 'page' in source['metadata'] and 'source' in source['metadata']:
+                source_list.append(f"<li>{source['page_content']} - Page: {source['metadata']['page']} - Source: {source['metadata']['source']}</li>")
+            else:
+                st.warning("Invalid source structure.")
         st.markdown(
             f"""
             <div style='background-color: {rbc_canada_palette["secondary"]}; padding: 10px;'>
@@ -67,13 +73,12 @@ if user_input:
                     Sources:
                 </p>
                 <ul style='margin-top: 5px; color: {rbc_canada_palette["text"]}; font-size: 12px;'>
-                    {''.join([f"<li>{source['page_content']} - Page: {source['metadata']['page']} - Source: {source['metadata']['source']}</li>" for source in sources])}
+                    {''.join(source_list)}
                 </ul>
             </div>
             """,
             unsafe_allow_html=True,
         )
-
 
 
 # Add a heading to the sidebar
