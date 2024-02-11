@@ -59,17 +59,16 @@ if user_input:
     )
     st.write("SOURCES:-")
     # Display the sources in separate blocks
-    # Concatenate HTML strings with newline characters
-    html_content = "\n".join([
+    html_content = "\n\n".join([
         f"""
-        <div style='background-color: {rbc_canada_palette["secondary"]}; padding: 10px; margin-bottom: 10px;'>
-            <p style='color: {rbc_canada_palette["accent1"]}; font-size: 14px;'>
+        <div style='background-color: {rbc_canada_palette["primary"]}; padding: 10px; margin-bottom: 10px;'>
+            <p style='color: {rbc_canada_palette["accent1"]}; font-size: 12px;'>
                 Page: {source.metadata["page"]}
             </p>
-            <p style='color: {rbc_canada_palette["text"]}; font-size: 14px;'>
+            <p style='color: {rbc_canada_palette["text"]}; font-size: 12px;'>
                 Document: {source.metadata["source"]}
             </p>
-            <p style='color: {rbc_canada_palette["text"]}; font-size: 14px;'>
+            <p style='color: {rbc_canada_palette["text"]}; font-size: 10px;'>
                 Content: {source.page_content}
             </p>
         </div>
