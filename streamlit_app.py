@@ -61,7 +61,7 @@ if user_input:
     # Display the sources in a separate block
     if sources:
         for source in sources:
-            st.write(source['content'])  # Print the source
+            st.write(source['page_content'])  # Print the source
             st.write(source['metadata']['page'])
             st.write(source['metadata']['source'])
 
