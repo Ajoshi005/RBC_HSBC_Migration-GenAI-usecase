@@ -59,9 +59,9 @@ if user_input:
     )
     # Display the sources in a separate block
     for source in sources:
-        st.write(source['page_content'])  # Print the source
-        # st.write(source['metadata']['page'])
-        # st.write(source['metadata']['source'])
+        # st.write(source['page_content'])  # Print the source
+        st.write(source['metadata']['page'])
+        st.write(source['metadata']['source'])
 
         # Add a heading to the sidebar
 st.sidebar.header("About the App")
