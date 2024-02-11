@@ -58,28 +58,14 @@ if user_input:
         unsafe_allow_html=True,
     )
     st.write("SOURCES:-")
-    # Display the sources in separate blocks
-    html_content = "\n\n".join([
-        f"""
-        <div style='background-color: {rbc_canada_palette["primary"]}; padding: 10px; margin-bottom: 10px;'>
-            <p style='color: {rbc_canada_palette["accent1"]}; font-size: 12px;'>
-                Page: {source.metadata["page"]}
-            </p>
-            <p style='color: {rbc_canada_palette["text"]}; font-size: 12px;'>
-                Document: {source.metadata["source"]}
-            </p>
-            <p style='color: {rbc_canada_palette["text"]}; font-size: 10px;'>
-                Content: {source.page_content}
-            </p>
-        </div>
-        """
-        for source in sources
-    ])
+    # Display the sources in a separate block
+    for source in sources:
+        st.write("Page:", source.metadata["page"])
+        st.write("Document:", source.metadata["source"])
+        st.write("Content:", source.page_content)
+        st.write("")
 
-    # Display the concatenated HTML content
-    st.markdown(html_content, unsafe_allow_html=True)
-
-    # Add a heading to the sidebar
+        # Add a heading to the sidebar
 st.sidebar.header("About the App")
 
 # Add a description to the sidebar
