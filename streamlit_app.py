@@ -61,18 +61,19 @@ if user_input:
     # Display the sources in a separate block
     if sources:
         st.markdown(
-            """
+            f"""
             <div style='background-color: {rbc_canada_palette["secondary"]}; padding: 10px;'>
                 <p style='color: {rbc_canada_palette["text"]}; font-size: 12px;'>
                     Sources:
                 </p>
-                <ul style='margin-top: 5px;'>
+                <ul style='margin-top: 5px; color: {rbc_canada_palette["text"]}; font-size: 12px;'>
                     {''.join([f"<li>{source}</li>" for source in sources])}
                 </ul>
             </div>
             """,
             unsafe_allow_html=True,
         )
+
 
 # Add a heading to the sidebar
 st.sidebar.header("About the App")
