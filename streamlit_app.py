@@ -59,24 +59,28 @@ if user_input:
     )
     st.write("SOURCES:-")
     # Display the sources in separate blocks
-    for source in sources:
-        st.markdown(
-            f"""
-            <div style='background-color: {rbc_canada_palette["secondary"]}; padding: 10px; margin-bottom: 10px;'>
-                <p style='color: {rbc_canada_palette["accent1"]}; font-size: 14px;'>
-                    Page: {source.metadata["page"]}
-                </p>
-                <p style='color: {rbc_canada_palette["text"]}; font-size: 14px;'>
-                    Document: {source.metadata["source"]}
-                </p>
-                <p style='color: {rbc_canada_palette["text"]}; font-size: 14px;'>
-                    Content: {source.page_content}
-                </p>
-            </div>
-            """
-        )
+    # Concatenate HTML strings with newline characters
+    html_content = "\n".join([
+        f"""
+        <div style='background-color: {rbc_canada_palette["secondary"]}; padding: 10px; margin-bottom: 10px;'>
+            <p style='color: {rbc_canada_palette["accent1"]}; font-size: 14px;'>
+                Page: {source.metadata["page"]}
+            </p>
+            <p style='color: {rbc_canada_palette["text"]}; font-size: 14px;'>
+                Document: {source.metadata["source"]}
+            </p>
+            <p style='color: {rbc_canada_palette["text"]}; font-size: 14px;'>
+                Content: {source.page_content}
+            </p>
+        </div>
+        """
+        for source in sources
+    ])
 
-        # Add a heading to the sidebar
+    # Display the concatenated HTML content
+    st.markdown(html_content, unsafe_allow_html=True)
+
+    # Add a heading to the sidebar
 st.sidebar.header("About the App")
 
 # Add a description to the sidebar
