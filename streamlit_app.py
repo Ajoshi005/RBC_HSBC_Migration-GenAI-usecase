@@ -64,9 +64,9 @@ if user_input:
         for source in sources:
             if 'page_content' in source and 'metadata' in source and 'page' in source['metadata'] and 'source' in source['metadata']:
                 source_list.append(f"<li>{source['page_content']} - Page: {source['metadata']['page']} - Source: {source['metadata']['source']}</li>")
-            else:
-                st.warning("Invalid source structure.")
-                st.write(source)  # Print the problematic source for inspection
+            # else:
+            #     st.warning("Invalid source structure.")
+            #     st.write(source)  # Print the problematic source for inspection
         if source_list:
             st.markdown(
                 f"""
