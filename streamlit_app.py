@@ -58,16 +58,23 @@ if user_input:
         unsafe_allow_html=True,
     )
     st.write("SOURCES:-")
-    # Display the sources in a separate block
+    # Display the sources in separate blocks
     for source in sources:
-        st.write(source.metadata["page"])
-        st.write(source.metadata["source"])
-        st.write(source.page_content)
-        st.write("")
-        st.write("")
-        # st.write(source['page_content'])  # Print the source
-        # st.write(source["metadata"]["page"])
-        # st.write(source["metadata"]["source"])
+        st.markdown(
+            f"""
+            <div style='background-color: {rbc_canada_palette["secondary"]}; padding: 10px; margin-bottom: 10px;'>
+                <p style='color: {rbc_canada_palette["accent1"]}; font-size: 14px;'>
+                    Page: {source.metadata["page"]}
+                </p>
+                <p style='color: {rbc_canada_palette["text"]}; font-size: 14px;'>
+                    Document: {source.metadata["source"]}
+                </p>
+                <p style='color: {rbc_canada_palette["text"]}; font-size: 14px;'>
+                    Content: {source.page_content}
+                </p>
+            </div>
+            """
+        )
 
         # Add a heading to the sidebar
 st.sidebar.header("About the App")
