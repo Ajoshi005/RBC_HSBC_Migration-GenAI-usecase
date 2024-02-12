@@ -58,7 +58,7 @@ if selected_product:
     user_input = st.text_area(f"Please enter your query on transition of your HSBC personal Banking "
                               f"product {selected_product} to RBC:")
     user_input = ("Answer the following question only using the document product-service-guide-personal-en.pdf regarding "
-                  f"product {selected_product} : {user_input}")
+                  f"product {selected_product}.Main Question : {user_input}")
 else:
     user_input = st.text_area(f"Please enter your query on transition of your HSBC Banking accounts to RBC:")
 
@@ -124,18 +124,19 @@ medium_url = "https://medium.com/p/cdb58657c5c3"
 # Add links to LinkedIn, GitHub, and Medium in the sidebar
 st.sidebar.markdown(
     f"""
+    <a href="{medium_url}" target="_blank" style="margin-bottom: 12px;">Read more about it on my Medium Blog</a>
     <div style="display: flex; align-items: center;">
         <a href="{linkedin_url}" target="_blank">
             <img src="https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Bug.svg.original.svg" width=30 height=30>
         </a>
-        <a href="{github_url}" target="_blank">
+        <a href="{github_url}" target="_blank" style="margin-left: 12px;">
             <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width=30 height=30>
         </a>
-        <a href="{medium_url}" target="_blank" style="margin-left: 12px;">Medium Blog</a>
     </div>
     """,
     unsafe_allow_html=True
 )
+
 
 st.markdown(
     """
