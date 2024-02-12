@@ -91,8 +91,14 @@ if user_input and submitted:
     # Display the sources in a separate block
     for source in sources:
         st.write("Page:", source.metadata["page"])
-        st.markdown(f"<span style='font-size: 12px; color:#264653;'>Source: {source.page_content}</span>",
-                    unsafe_allow_html=True)
+        st.markdown(
+            f"""
+            <div style='background-color: {rbc_canada_palette["background"]}; padding: 10px;'>
+                <p style='color: {rbc_canada_palette["accent2"]}; font-size: 12px;'>
+                    Source: {source.page_content}
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
         st.write("")
 
         # Add a heading to the sidebar
