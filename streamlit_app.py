@@ -104,7 +104,7 @@ st.sidebar.write(
 )
 RBC_doc_url = "https://www.rbc.com/hsbc-canada/product-service-guide.html?#personal"
 st.sidebar.markdown(
-    f'<a href="{RBC_doc_url}">RBC Product Migration Guide</a>', unsafe_allow_html=True)
+    f'<a href="{RBC_doc_url}">PDF Link to RBC Product Migration Guide</a>', unsafe_allow_html=True)
 
 sidebar_text = """
 ### Tech stack:

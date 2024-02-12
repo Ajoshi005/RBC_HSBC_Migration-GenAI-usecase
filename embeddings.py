@@ -71,7 +71,7 @@ def query_llm(query):
     Instead, subtly mention that the information is based on the RBC product Migration guide.
     {context}
     Question: {question}
-    Detailed Helpful Answer:"""
+    Detailed Answer:"""
     custom_rag_prompt = ChatPromptTemplate.from_template(template)
 
     index_name = 'rbchsbc-retrieval-augmentation'
