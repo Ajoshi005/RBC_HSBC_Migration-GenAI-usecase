@@ -63,10 +63,7 @@ else:
 
 # Add a submit button
 submitted = st.button("Submit")
-# Execute function when the submit button is clicked
-if submitted:
-    # Call your function here
-    print("Selected Product:", selected_product)
+
 
 # Check if the user has entered any input
 if user_input and submitted:
@@ -77,14 +74,14 @@ if user_input and submitted:
     st.markdown(
         f"""
         <div style='background-color: {rbc_canada_palette["secondary"]}; padding: 10px;'>
-            <p style='color: {rbc_canada_palette["accent1"]}; font-size: 16px;font-weight: bold;'>
+            <p style='color: {rbc_canada_palette["accent1"]}; font-size: 16px;'>
                 {model_output}
             </p>
         </div>
         """,
         unsafe_allow_html=True,
     )
-    st.write("Response based on below sources:-")
+    st.write("Response based on below sources from RBC Personal Product Migration Guide:-")
     # Display the sources in a separate block
     for source in sources:
         st.write("Page:", source.metadata["page"])
