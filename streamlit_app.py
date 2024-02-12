@@ -16,8 +16,8 @@ st.title("🧑‍💼 Customer Relationship Manager AI Assistant 🤝")
 
 # Define the professional color palette for Streamlit
 rbc_canada_palette = {
-    "primary": "#C1E1C2",  # light green background
-    "secondary": "#264653",  # dark blue
+    "primary": "#F5F5F5",  # light green background
+    "secondary": "#4B0082",  # indigo blue
     "background": "#0e1117",  # A dark blue color used as the background color of the interface.
     "text": "#fafafa",  # A soft peach color used for text to ensure better readability.
     "accent1": "#E9C46A",  # A mustard yellow color used as an accent for highlighting specific elements.
@@ -77,7 +77,7 @@ if user_input and submitted:
     st.markdown(
         f"""
         <div style='background-color: {rbc_canada_palette["secondary"]}; padding: 10px;'>
-            <p style='color: {rbc_canada_palette["accent1"]}; font-size: 16px;'>
+            <p style='color: {rbc_canada_palette["accent1"]}; font-size: 16px;font-weight: bold;'>
                 {model_output}
             </p>
         </div>
