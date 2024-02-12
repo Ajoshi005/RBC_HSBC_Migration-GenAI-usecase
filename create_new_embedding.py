@@ -63,6 +63,7 @@ pc = PineconeClient(api_key=PINECONE_API_KEY, environment='us-west1-gcp-free')
 index = pc.Index("rbchsbc-retrieval-augmentation")
 index.delete(delete_all=True)
 
+
 # Call the create knowledge function(High OpenAI-Usage call)
 retriever_check = create_knowledge_base(splits)
 
