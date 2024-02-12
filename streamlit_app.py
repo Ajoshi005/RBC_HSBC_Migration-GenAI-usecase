@@ -16,12 +16,12 @@ st.title("🧑‍💼 Customer Relationship Manager AI Assistant 🤝")
 
 # Define the professional color palette for Streamlit
 rbc_canada_palette = {
-    "primary": "#ff4b4b",
-    "secondary": "#262730",  # A warm orange color used for accentuating elements like borders and icons.
+    "primary": "#C1E1C2",  # light green background
+    "secondary": "#264653",  # dark blue
     "background": "#0e1117",  # A dark blue color used as the background color of the interface.
     "text": "#fafafa",  # A soft peach color used for text to ensure better readability.
     "accent1": "#E9C46A",  # A mustard yellow color used as an accent for highlighting specific elements.
-    "accent2": "#F4A261",  # A shade of orange used for additional accents or to add visual variety.
+    "accent2": "#000000",  # black
     "accent3": "#2A9D8F"  # A slightly lighter shade of teal-green used for highlighting specific elements or actions.
 }
 
@@ -52,7 +52,6 @@ product_options = [
 # Create the dropdown list
 selected_product = st.selectbox("Select Product", product_options)
 
-
 # Get user input from text area based on product selected (prompt selection)
 if selected_product:
     user_input = st.text_area(f"Please enter your query on transition of your HSBC personal Banking "
@@ -62,14 +61,12 @@ if selected_product:
 else:
     user_input = st.text_area(f"Please enter your query on transition of your HSBC Banking accounts to RBC:")
 
-
 # Add a submit button
 submitted = st.button("Submit")
 # Execute function when the submit button is clicked
 if submitted:
     # Call your function here
     print("Selected Product:", selected_product)
-
 
 # Check if the user has entered any input
 if user_input and submitted:
@@ -93,9 +90,9 @@ if user_input and submitted:
         st.write("Page:", source.metadata["page"])
         st.markdown(
             f"""
-            <div style='background-color: {rbc_canada_palette["background"]}; padding: 10px;'>
+            <div style='background-color: {rbc_canada_palette["primary"]}; padding: 10px;'>
                 <p style='color: {rbc_canada_palette["accent2"]}; font-size: 12px;'>
-                    Source: {source.page_content}
+                   {source.page_content}
                 </p>
             </div>
             """, unsafe_allow_html=True)
@@ -142,7 +139,6 @@ st.sidebar.markdown(
     """,
     unsafe_allow_html=True
 )
-
 
 st.markdown(
     """
