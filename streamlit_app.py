@@ -58,7 +58,7 @@ if selected_product:
     user_input = st.text_area(f"Please enter your query on transition of your HSBC personal Banking "
                               f"product {selected_product} to RBC:")
     user_input = ("Regarding "
-                  f"product {selected_product}.Question : {user_input}")
+                  f" {selected_product} : {user_input}")
 else:
     user_input = st.text_area(f"Please enter your query on transition of your HSBC Banking accounts to RBC:")
 
