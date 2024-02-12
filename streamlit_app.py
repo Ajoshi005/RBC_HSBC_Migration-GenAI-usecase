@@ -51,6 +51,18 @@ product_options = [
 
 # Create the dropdown list
 selected_product = st.selectbox("Select Product", product_options)
+
+
+# Get user input from text area based on product selected (prompt selection)
+if selected_product:
+    user_input = st.text_area(f"Please enter your query on transition of your HSBC personal Banking "
+                              f"product {selected_product} to RBC:")
+    user_input = ("Answer the following question only using the document product-service-guide-personal-en.pdf regarding "
+                  f"product {selected_product} : {user_input}")
+else:
+    user_input = st.text_area(f"Please enter your query on transition of your HSBC Banking accounts to RBC:")
+
+
 # Add a submit button
 submitted = st.button("Submit")
 # Execute function when the submit button is clicked
@@ -58,17 +70,9 @@ if submitted:
     # Call your function here
     print("Selected Product:", selected_product)
 
-# Get user input from text area based on product selected (prompt selection)
-if selected_product:
-    user_input = st.text_area(f"Please enter your query on transition of your HSBC personal Banking "
-                              f"product {selected_product} to RBC:")
-    user_input = ("Answer the following question from source product-service-guide-personal-en.pdf regarding personal "
-                  f"product {selected_product} to RBC: {user_input}")
-else:
-    user_input = st.text_area(f"Please enter your query on transition of your HSBC personal Banking accounts to RBC:")
 
 # Check if the user has entered any input
-if user_input:
+if user_input and submitted:
     # Process user input and get the model's output and sources
     model_output, sources = query_llm(user_input)
 
