@@ -35,7 +35,7 @@ def query_llm(query):
     pinecone = PineconeClient(api_key=PINECONE_API_KEY, environment='us-west1-gcp-free')
 
     docsearch = Pinecone.from_existing_index(index_name, embeddings)
-    retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k": 3})
+    retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k": 5})
 
     rag_chain = (
             {"context": retriever, "question": RunnablePassthrough()}
