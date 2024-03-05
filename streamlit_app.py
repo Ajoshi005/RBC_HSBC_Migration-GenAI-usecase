@@ -17,7 +17,7 @@ st.set_page_config(page_title="AI CRM Manager",
                    layout="wide",
                    initial_sidebar_state="expanded",
                    )
-st.title("🧑‍💼Customer Relationship Manager AI Assistant 🤝")
+st.title("Customer Relationship Manager AI Assistant 🤝")
 
 # Define the professional color palette for Streamlit
 rbc_canada_palette = {
