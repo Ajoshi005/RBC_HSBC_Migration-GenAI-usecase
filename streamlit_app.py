@@ -12,7 +12,12 @@ os.environ["LANGCHAIN_PROJECT"] = "RBC-HSBC-GENAI-USECASE"
 # ----------BUILDING the APP.py----------------------------#
 
 # Set Streamlit app title with emojis related to customer relationship management
-st.title("🧑‍💼 Customer Relationship Manager AI Assistant 🤝")
+st.set_page_config(page_title="AI CRM Manager",
+                   page_icon="🧑‍💼",
+                   layout="wide",
+                   initial_sidebar_state="expanded",
+                   )
+st.title("🧑‍💼Customer Relationship Manager AI Assistant 🤝")
 
 # Define the professional color palette for Streamlit
 rbc_canada_palette = {
