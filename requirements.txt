@@ -9,7 +9,6 @@ chromadb
 pypdf
 tiktoken
 python-dotenv==1.0.0
-
 unstructured["all-docs"]
 poppler-utils
 tesseract-ocr
