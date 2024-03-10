@@ -55,7 +55,7 @@ product_options = [
 ]
 
 # Create the dropdown list
-selected_product = st.selectbox("Select Product", product_options)
+selected_product = st.selectbox("Select your Product", product_options)
 
 # Get user input from text area based on product selected (prompt selection)
 if selected_product:
