@@ -9,11 +9,8 @@ chromadb
 pypdf
 tiktoken
 python-dotenv==1.0.0
-unstructured["all-docs"]
+
 poppler-utils
 tesseract-ocr
 pdf2image
-pdfminer.six
-pdfminer.six[image]
-PyMuPDF
 unstructured==0.12.4
