@@ -14,7 +14,7 @@ load_dotenv()
 
 
 def query_llm(query):
-    llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0, openai_api_key=os.getenv('OPENAI_KEY'))
+    llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0, openai_api_key=st.secrets["OPENAI_KEY"])
 
     template = """You're a helpful, empathetic and friendly customer relationship manager helping respond to HSBC customer 
     queries regarding the migration of their accounts to RBC Bank.
