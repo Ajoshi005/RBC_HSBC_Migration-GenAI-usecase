@@ -88,17 +88,18 @@ if user_input and submitted:
     )
     st.write("Response based on below sources from RBC Personal Product Migration Guide:-")
     # Display the sources in a separate block
-    for source in sources:
-        st.write("Page:", source.metadata["page"])
-        st.markdown(
-            f"""
-            <div style='background-color: {rbc_canada_palette["primary"]}; padding: 10px;'>
-                <p style='color: {rbc_canada_palette["accent2"]}; font-size: 12px;'>
-                   {source.page_content}
-                </p>
-            </div>
-            """, unsafe_allow_html=True)
-        st.write("")
+    with st.expander("Sources", expanded=False):
+        for source in sources:
+            st.write("Page:", source.metadata["page"])
+            st.markdown(
+                f"""
+                <div style='background-color: {rbc_canada_palette["primary"]}; padding: 10px;'>
+                    <p style='color: {rbc_canada_palette["accent2"]}; font-size: 12px;'>
+                       {source.page_content}
+                    </p>
+                </div>
+                """, unsafe_allow_html=True)
+            st.write("")
 
         # Add a heading to the sidebar
 st.sidebar.header("About the App")
