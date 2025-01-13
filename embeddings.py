@@ -1,8 +1,7 @@
-from langchain.vectorstores import Pinecone
-from langchain.embeddings import OpenAIEmbeddings
-import pinecone
-
 import os
+from pinecone import Pinecone
+from langchain.vectorstores import Pinecone as LangchainPinecone
+from langchain.embeddings import OpenAIEmbeddings
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
@@ -33,10 +32,11 @@ def query_llm(query):
 
     PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")  # st.secrets["PINECONE_API_KEY"]
 
-    # init
-    pinecone.init(api_key=PINECONE_API_KEY, environment='us-east-1')
-
-    docsearch = Pinecone.from_existing_index(index_name, embeddings)
+    # Initialize Pinecone
+    pc = Pinecone(api_key=PINECONE_API_KEY)
+    # Initialize the vector store
+    docsearch = LangchainPinecone.from_existing_index(index_name, embeddings)
+    # docsearch = Pinecone.from_existing_index(index_name, embeddings)
     retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k": 5})
 
     rag_chain = (
