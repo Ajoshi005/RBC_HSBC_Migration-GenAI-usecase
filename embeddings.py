@@ -29,7 +29,7 @@ def query_llm(query):
     index_name = 'rbchsbc-retrieval-augmentation'
     embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["OPENAI_KEY"])
 
-    PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")  # st.secrets["PINECONE_API_KEY"]
+    PINECONE_API_KEY = os.environ.get("PINECONE_API_KEY")  # st.secrets["PINECONE_API_KEY"]
 
     # init
     pinecone = PineconeClient(api_key=PINECONE_API_KEY, environment='us-west1-gcp-free')
