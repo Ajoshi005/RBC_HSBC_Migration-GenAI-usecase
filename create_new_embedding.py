@@ -39,7 +39,7 @@ def create_knowledge_base(split_docs):
     PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 
     # init
-    pinecone = PineconeClient(api_key=PINECONE_API_KEY, environment='us-west1-gcp-free')
+    pinecone = PineconeClient(api_key=PINECONE_API_KEY, environment='us-east-1')
 
     # if index_name not in pinecone.list_indexes():
     #     pinecone.create_index(
@@ -59,7 +59,7 @@ def create_knowledge_base(split_docs):
 
 # delete the pinecone index content
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
-pc = PineconeClient(api_key=PINECONE_API_KEY, environment='us-west1-gcp-free')
+pc = PineconeClient(api_key=PINECONE_API_KEY, environment='us-east-1')
 index = pc.Index("rbchsbc-retrieval-augmentation")
 index.delete(delete_all=True)
 

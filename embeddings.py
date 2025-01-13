@@ -27,12 +27,12 @@ def query_llm(query):
     custom_rag_prompt = ChatPromptTemplate.from_template(template)
 
     index_name = 'rbchsbc-retrieval-augmentation'
-    embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["OPENAI_KEY"])
+    embeddings = OpenAIEmbeddings(openai_api_key=os.getenv('OPENAI_KEY'))
 
-    PINECONE_API_KEY = os.environ.get("PINECONE_API_KEY")  # st.secrets["PINECONE_API_KEY"]
+    PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")  # st.secrets["PINECONE_API_KEY"]
 
     # init
-    pinecone = PineconeClient(api_key=PINECONE_API_KEY, environment='us-west1-gcp-free')
+    pinecone = PineconeClient(api_key=PINECONE_API_KEY, environment='us-east-1')
 
     docsearch = Pinecone.from_existing_index(index_name, embeddings)
     retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k": 5})
