@@ -1,12 +1,12 @@
-streamlit==1.31.0
+streamlit==1.37.0
 pinecone-client==3.0.2
-langchain==0.1.5
+langchain==0.3.7
 langchain_core
-langchain-community
+langchain-community==0.3.1
 langchainhub
 langchain-openai
 chromadb
 pypdf
 tiktoken
 python-dotenv==1.0.0
-unstructured==0.12.4
+unstructured==0.14.3
