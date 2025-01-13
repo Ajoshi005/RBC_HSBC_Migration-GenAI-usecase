@@ -25,7 +25,7 @@ def query_llm(query):
     Question: {question}
     Detailed Answer:"""
     custom_rag_prompt = ChatPromptTemplate.from_template(template)
-
+    load_dotenv()
     index_name = 'rbchsbc-retrieval-augmentation'
     embeddings = OpenAIEmbeddings(openai_api_key=os.getenv('OPENAI_KEY'))
 
