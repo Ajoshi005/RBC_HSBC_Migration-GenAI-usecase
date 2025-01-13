@@ -33,6 +33,10 @@ def query_llm(query):
 
     # init
     pinecone = PineconeClient(api_key=PINECONE_API_KEY, environment='us-east-1')
+    Pinecone.init(
+        api_key=os.getenv('PINECONE_API_KEY'),
+        environment="YOUR_PINECONE_ENVIRONMENT"
+    )
 
     docsearch = Pinecone.from_existing_index(index_name, embeddings)
     retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k": 5})
