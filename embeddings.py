@@ -1,4 +1,4 @@
-from pinecone import Pinecone, PineconeClient, ServerlessSpec
+from pinecone import Pinecone, ServerlessSpec
 
 from langchain_community.vectorstores import Pinecone
 import os
