@@ -1,4 +1,4 @@
-from pinecone import Pinecone, ServerlessSpec
+from pinecone import Pinecone, PineconeClient, ServerlessSpec
 
 from langchain_community.vectorstores import Pinecone
 import os
@@ -34,7 +34,7 @@ def query_llm(query):
 
     # init
     # pinecone = PineconeClient(api_key=PINECONE_API_KEY, environment='us-east-1')
-    pc = Pinecone(api_key=PINECONE_API_KEY)
+    Pinecone.init(api_key=PINECONE_API_KEY, environment='us-east-1')
 
     docsearch = Pinecone.from_existing_index(index_name, embeddings)
     retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k": 5})
