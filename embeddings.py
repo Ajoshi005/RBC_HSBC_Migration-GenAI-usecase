@@ -1,4 +1,5 @@
-from pinecone import Pinecone as PineconeClient, PodSpec
+from pinecone import Pinecone, ServerlessSpec
+
 from langchain_community.vectorstores import Pinecone
 import os
 from langchain_core.runnables import RunnablePassthrough
@@ -32,11 +33,8 @@ def query_llm(query):
     PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")  # st.secrets["PINECONE_API_KEY"]
 
     # init
-    pinecone = PineconeClient(api_key=PINECONE_API_KEY, environment='us-east-1')
-    Pinecone.init(
-        api_key=os.getenv('PINECONE_API_KEY'),
-        environment="YOUR_PINECONE_ENVIRONMENT"
-    )
+    # pinecone = PineconeClient(api_key=PINECONE_API_KEY, environment='us-east-1')
+    pc = Pinecone(api_key=PINECONE_API_KEY)
 
     docsearch = Pinecone.from_existing_index(index_name, embeddings)
     retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k": 5})
