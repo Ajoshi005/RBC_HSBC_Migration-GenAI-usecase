@@ -86,20 +86,38 @@ if user_input and submitted:
         """,
         unsafe_allow_html=True,
     )
-    st.write("Response based on below sources from RBC Personal Product Migration Guide:-")
-    # Display the sources in a separate block
-    with st.expander("Sources", expanded=False):
-        for source in sources:
-            st.write("Page:", source.metadata["page"])
-            st.markdown(
-                f"""
-                <div style='background-color: {rbc_canada_palette["primary"]}; padding: 10px;'>
-                    <p style='color: {rbc_canada_palette["accent2"]}; font-size: 12px;'>
-                       {source.page_content}
-                    </p>
-                </div>
-                """, unsafe_allow_html=True)
-            st.write("")
+# Define CSS for consistent font styling
+st.markdown(
+    """
+    <style>
+    .custom-font {
+        font-family: 'Arial', sans-serif;
+        font-size: 14px;
+    }
+    .custom-source {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+st.write("Response based on below sources from RBC Personal Product Migration Guide:-")
+# Display the sources in a separate block
+with st.expander("Sources", expanded=False):
+    for source in sources:
+        st.write("Page:", source.metadata["page"])
+        st.markdown(
+            f"""
+            <div class='custom-source'>
+                <p class='custom-font'>
+                   {source.page_content}
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
+        st.write("")
 
         # Add a heading to the sidebar
 st.sidebar.header("About the App")
