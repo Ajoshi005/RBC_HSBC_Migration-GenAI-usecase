@@ -17,14 +17,13 @@ load_dotenv()
 def query_llm(query):
     llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0, openai_api_key=os.getenv("OPENAI_KEY"))
 
-    template = """You're a helpful, empathetic and friendly customer relationship manager helping respond to HSBC customer 
-    queries regarding the migration of their accounts to RBC Bank.
-    You rely on the knowledge from the context for your replies.When answering questions, be sure to provide answers that 
-    reflect the content of the knowledge base,but avoid saying things like 'according to the knowledge base'. 
-    Instead, subtly mention that the information is based on the RBC product Migration guide.
-    {context}
-    Question: {question}
-    Detailed Answer:"""
+    template = """You're a friendly, empathetic, and knowledgeable customer relationship manager assisting HSBC customers with their queries about migrating their accounts to RBC Bank. Your responses should be based on the information provided in the context, ensuring accuracy and relevance. When answering questions, provide clear and helpful responses that align with the RBC product Migration guide, without explicitly referencing the knowledge base. Instead, weave in the information naturally to enhance customer understanding. 
+
+{context}
+
+Question: {question}
+
+Detailed Answer:"""
     custom_rag_prompt = ChatPromptTemplate.from_template(template)
     load_dotenv()
     index_name = 'rbchsbc-retrieval-augmentation'
