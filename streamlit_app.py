@@ -106,11 +106,11 @@ st.sidebar.header("About the App")
 
 # Add a description to the sidebar
 st.sidebar.write(
-    "The App responds to your questions on HSBC RBC Transition based on the RBC Product Migration Guide"
+    "Your one stop hub for RBC Transition from HSBC based on the RBC Product Migration Guide"
 )
 RBC_doc_url = "https://www.rbc.com/hsbc-canada/product-service-guide.html?#personal"
 st.sidebar.markdown(
-    f'<a href="{RBC_doc_url}">PDF Link to RBC Product Migration Guide</a>', unsafe_allow_html=True)
+    f'<a href="{RBC_doc_url}">RBC Product Migration Guide</a>', unsafe_allow_html=True)
 
 sidebar_text = """
 ### Tech stack:
@@ -118,6 +118,7 @@ sidebar_text = """
 2) Open AI      - embedding and LLM Model
 3) Pinecone     - Vector DB
 4) Streamlit    - App UI and hosting
+5) Langsmith    - Tracing and testing
 """
 
 st.sidebar.markdown(sidebar_text)
@@ -125,7 +126,7 @@ st.sidebar.markdown(sidebar_text)
 # Define the URLs
 linkedin_url = "https://www.linkedin.com/in/akashjoshi/"
 github_url = "https://github.com/Ajoshi005"
-medium_url = "https://medium.com/p/cdb58657c5c3"
+medium_url = "https://medium.com/@joshiakash89/upgrading-your-rag-game-using-lcel-and-langsmith-89e38781f2cd"
 
 # Add links to LinkedIn, GitHub, and Medium in the sidebar
 st.sidebar.markdown(

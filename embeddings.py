@@ -6,6 +6,7 @@ from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_core.prompts import ChatPromptTemplate
+from langchain.memory import ConversationBufferMemory
 from langchain.globals import set_debug
 from dotenv import load_dotenv
 import streamlit as st
@@ -15,11 +16,13 @@ load_dotenv()
 
 
 def query_llm(query):
-    llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0, openai_api_key=os.getenv("OPENAI_KEY"))
+    memory = ConversationBufferMemory(memory_key="chat_history")
+    llm = ChatOpenAI(model_name="gpt-4o-mini",memory=memory , temperature=0, openai_api_key=os.getenv("OPENAI_KEY"))
 
     template = """You're a friendly, empathetic, and knowledgeable customer relationship manager assisting HSBC customers with their queries about migrating their accounts to RBC Bank. Your responses should be based on the information provided in the context, ensuring accuracy and relevance. When answering questions, provide clear and helpful responses that align with the RBC product Migration guide, without explicitly referencing the knowledge base. Instead, weave in the information naturally to enhance customer understanding. 
 
 {context}
+Below is the history of conversation before this question :{chat_history}
 
 Question: {question}
 
