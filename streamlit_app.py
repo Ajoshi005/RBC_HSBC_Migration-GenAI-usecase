@@ -61,7 +61,7 @@ selected_product = st.selectbox("Select your Product", product_options)
 if selected_product:
     user_input = st.text_area(f"Please enter your query on transition of your HSBC personal Banking "
                               f"product {selected_product} to RBC:")
-    user_input = ("Regarding "
+    user_input = ("I have a query regarding the product/service"
                   f" {selected_product} : {user_input}")
 else:
     user_input = st.text_area(f"Please enter your query on transition of your HSBC Banking accounts to RBC:")
