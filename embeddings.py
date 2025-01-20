@@ -16,9 +16,6 @@ load_dotenv()
 
 
 def query_llm(query):
-    memory = ConversationBufferMemory(memory_key="chat_history")
-    llm = ChatOpenAI(model_name="gpt-4o-mini",memory=memory , temperature=0, openai_api_key=os.getenv("OPENAI_KEY"))
-
     template = """You're a friendly, empathetic, and knowledgeable customer relationship manager assisting HSBC customers with their queries about migrating their accounts to RBC Bank. Your responses should be based on the information provided in the context, ensuring accuracy and relevance. When answering questions, provide clear and helpful responses that align with the RBC product Migration guide, without explicitly referencing the knowledge base. Instead, weave in the information naturally to enhance customer understanding. 
 
 {context}
@@ -31,6 +28,8 @@ Detailed Answer:"""
     load_dotenv()
     index_name = 'rbchsbc-retrieval-augmentation'
     embeddings = OpenAIEmbeddings(openai_api_key=os.getenv('OPENAI_KEY'))
+    memory = ConversationBufferMemory(memory_key="chat_history")
+    llm = ChatOpenAI(model_name="gpt-4o-mini",memory=memory , prompt= custom_rag_prompt, temperature=0, openai_api_key=os.getenv("OPENAI_KEY"))
 
     PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]   # os.getenv("PINECONE_API_KEY")
 
@@ -43,7 +42,7 @@ Detailed Answer:"""
 
     rag_chain = (
             {"context": retriever, "question": RunnablePassthrough()}
-            | custom_rag_prompt
+        #     | custom_rag_prompt
             | llm
             | StrOutputParser()
     )
