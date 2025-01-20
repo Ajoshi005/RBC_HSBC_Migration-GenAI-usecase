@@ -5,7 +5,7 @@ from langchain.embeddings import OpenAIEmbeddings
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate,PromptTemplate
 from langchain.memory import ConversationBufferMemory
 from langchain.globals import set_debug
 from dotenv import load_dotenv
@@ -24,7 +24,7 @@ Below is the history of conversation before this question :{chat_history}
 Question: {question}
 
 Detailed Answer:"""
-    custom_rag_prompt = ChatPromptTemplate.from_template(template)
+    custom_rag_prompt = PromptTemplate.from_template(template)
     load_dotenv()
     index_name = 'rbchsbc-retrieval-augmentation'
     embeddings = OpenAIEmbeddings(openai_api_key=os.getenv('OPENAI_KEY'))
