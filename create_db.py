@@ -131,8 +131,9 @@ async def crawl_sequential(urls: List[str]) -> List[CrawledData]:
 
 async def main():
     try:
-        urls = ['https://www.langchain.com/langchain', 'https://www.langchain.com/about']
-        # ai_docs_urls()
+        urls = ai_docs_urls()
+        #['https://www.langchain.com/langchain', 'https://www.langchain.com/about']
+        
         if not urls:
             print("No URLs found to crawl")
             return
