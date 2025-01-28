@@ -17,13 +17,13 @@ class CrawledData(BaseModel):
     url: HttpUrl = Field(..., description="Full URL of the webpage")
    
     # Content fields
-    title: str = Field(..., description="Page title")
+    # title: str = Field(..., description="Page title")
     content: str = Field(..., description="Main content of the webpage")
-    summary: str = Field(..., description="AI-generated summary of content")
+    # summary: str = Field(..., description="AI-generated summary of content")
 
     # Timestamps and tracking
     crawl_date: datetime = Field(
-        default_factory=datetime.utcnow,
+        default_factory=datetime.now(datetime.timezone.utc),
         description="Date and time of crawl in UTC"
     )
     last_modified: Optional[datetime] = Field(
@@ -33,9 +33,9 @@ class CrawledData(BaseModel):
 # Create an instance
 page = CrawledData(
     url="https://www.langchain.com/about",
-    title="Page Title",
+    # title="Page Title",
     content="Main content here",
-    summary="Brief summary"
+    # summary="Brief summary"
 )
 
 
@@ -70,13 +70,13 @@ def ai_docs_urls():
 # print(ai_docs_urls())
 
 
-async def crawl_sequential(urls: List[str]):
+async def crawl_sequential(urls: List[str]) -> List[CrawledData]:
     """
     gets a list of URLs and scrapes the content of each URL sequentially.
     Uses the AsyncWebCrawler to scrape the content of each URL.
     
     Returns:
-        Dict[str, str]: Dictionary of URL and its content
+        List[CrawledData]: List of CrawledData objects containing URL and content
     """  
     print("\n=== Sequential Crawling with Session Reuse ===")
 
@@ -96,7 +96,7 @@ async def crawl_sequential(urls: List[str]):
 
     try:
         session_id = "session1"  # Reuse the same session across all URLs
-        url_content = {}
+        crawled_data = []
         for url in urls:
             result = await crawler.arun(
                 url=url,
@@ -104,14 +104,39 @@ async def crawl_sequential(urls: List[str]):
                 session_id=session_id
             )
             if result.success:
-                url_content[url] = result.markdown_v2.raw_markdown
+                # Create CrawledData object for successful crawls
+                page_data = CrawledData(
+                    url=url,
+                    content=result.markdown_v2.raw_markdown,
+                    # last_modified will default to None as per your model
+                )
+                crawled_data.append(page_data)
                 print(f"Successfully crawled: {url}")
-                # E.g. check markdown length
                 print(f"Markdown length: {len(result.markdown_v2.raw_markdown)}")
             else:
                 print(f"Failed: {url} - Error: {result.error_message}")
-                url_content[url] = ""
+                # For failed crawls, you might want to still create an object with empty content
+                # or simply skip it based on your needs
+                page_data = CrawledData(
+                    url=url,
+                    content="",
+                )
+                crawled_data.append(page_data)
     finally:
         # After all URLs are done, close the crawler (and the browser)
         await crawler.close()
-        return url_content
+        return crawled_data
+    
+
+async def main():
+    urls = ai_docs_urls()
+    crawled_pages = await crawl_sequential(urls)
+
+    # Access the data
+    for page in crawled_pages:
+        print(f"URL: {page.url}")
+        print(f"Content length: {len(page.content)}")
+        print(f"Crawl date: {page.crawl_date}")
+
+# Run the main function
+asyncio.run(main())
