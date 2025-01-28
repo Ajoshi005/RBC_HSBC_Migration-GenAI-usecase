@@ -23,11 +23,11 @@ class CrawledData(BaseModel):
 
     # Timestamps and tracking
     crawl_date: datetime = Field(
-        default_factory=datetime.now(timezone.utc),
+        default_factory=lambda: datetime.now(timezone.utc),  # Default to current time
         description="Date and time of crawl in UTC"
     )
     last_modified: Optional[datetime] = Field(
-        None, 
+        None,
         description="Last modified date from webpage headers"
     )
 # Create an instance
