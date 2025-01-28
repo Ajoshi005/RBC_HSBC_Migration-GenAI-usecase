@@ -60,14 +60,15 @@ def ai_docs_urls():
         # Extract all URLs from the sitemap
         # The namespace is usually defined in the root element
         namespace = {'ns': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
-        urls = [loc.text for loc in root.findall('.//ns:loc', namespace)]
+        urls = [loc.text.strip() for loc in root.findall('.//ns:loc', namespace)]
+
         
         return urls
     except requests.RequestException as e:  # More specific exception
         print(f"Error fetching sitemap: {e}")
         return []
     
-# print(ai_docs_urls())
+print(ai_docs_urls())
 
 
 async def crawl_sequential(urls: List[str]) -> List[CrawledData]:
@@ -130,7 +131,8 @@ async def crawl_sequential(urls: List[str]) -> List[CrawledData]:
 
 async def main():
     try:
-        urls = ai_docs_urls()
+        urls = 'https://www.langchain.com/langchain'
+        # ai_docs_urls()
         if not urls:
             print("No URLs found to crawl")
             return
