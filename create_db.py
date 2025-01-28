@@ -7,7 +7,7 @@ from typing import List, Optional
 from datetime import datetime, timezone
 from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, DefaultMarkdownGenerator
 from pydantic import BaseModel, Field, HttpUrl
-from typing import List
+
 
 class CrawledData(BaseModel):
     '''
@@ -63,7 +63,7 @@ def ai_docs_urls():
         urls = [loc.text for loc in root.findall('.//ns:loc', namespace)]
         
         return urls
-    except Exception as e:
+    except requests.RequestException as e:  # More specific exception
         print(f"Error fetching sitemap: {e}")
         return []
     
@@ -129,14 +129,19 @@ async def crawl_sequential(urls: List[str]) -> List[CrawledData]:
     
 
 async def main():
-    urls = ai_docs_urls()
-    crawled_pages = await crawl_sequential(urls)
-
-    # Access the data
-    for page in crawled_pages:
-        print(f"URL: {page.url}")
-        print(f"Content length: {len(page.content)}")
-        print(f"Crawl date: {page.crawl_date}")
+    try:
+        urls = ai_docs_urls()
+        if not urls:
+            print("No URLs found to crawl")
+            return
+        crawled_pages = await crawl_sequential(urls)
+        # Access the data
+        for page in crawled_pages:
+            print(f"URL: {page.url}")
+            print(f"Content length: {len(page.content)}")
+            print(f"Crawl date: {page.crawl_date}")
+    except Exception as e:
+        print(f"Error in main: {e}")
 
 # Run the main function
 asyncio.run(main())
