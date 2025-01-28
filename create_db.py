@@ -4,7 +4,7 @@
 from xml.etree import ElementTree
 import asyncio, requests
 from typing import List, Optional
-from datetime import datetime
+from datetime import datetime, timezone
 from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, DefaultMarkdownGenerator
 from pydantic import BaseModel, Field, HttpUrl
 from typing import List
@@ -23,7 +23,7 @@ class CrawledData(BaseModel):
 
     # Timestamps and tracking
     crawl_date: datetime = Field(
-        default_factory=datetime.now(datetime.timezone.utc),
+        default_factory=datetime.now(timezone.utc),
         description="Date and time of crawl in UTC"
     )
     last_modified: Optional[datetime] = Field(
